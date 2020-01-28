@@ -22,7 +22,7 @@ class IdeaForm extends Component {
   }
 
   axios.put(
-    `https://titus-ideaboard.herokuapp.com/api/v1/ideas${this.props.idea.id}`,
+    `https://titus-ideaboard.herokuapp.com/api/v1/ideas/${this.props.idea.id}`,
     {
       idea: idea
     })
@@ -40,7 +40,7 @@ class IdeaForm extends Component {
       <div className="tile">
         <form onBlur={this.handleBlur}>
           <input className='input' type="text"
-            name="title" placeholder='Enter a Title' value={this.state.title} onChange={this.handleInput} />
+            name="title" placeholder='Enter a Title' ref={this.props.titleRef} value={this.state.title} onChange={this.handleInput} />
           <textarea className='input' name="body"
             placeholder='Describe your idea'value={this.state.body} onChange={this.handleInput}></textarea>
         </form>

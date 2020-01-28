@@ -11,7 +11,7 @@ constructor(props) {
   this.state = {
     ideas: [],
     editingIdeaId: null,
-    notification: ''
+    notification: '',
   }
 }
   
@@ -71,18 +71,18 @@ deleteIdea = (id) => {
   })
   .catch(error => console.log(error))
 }
+
+
   enableEditing = (id) => {
-    this.setState({editingIdeaId: id}, () => { this.title.focus() })
+    this.setState({editingIdeaId: id},
+    () => { this.title.focus() })
   }
 
  render() {
   return (
     <div>
     <h1>Hello</h1>
-       <button className="newIdeaButton"
-  onClick={this.addNewIdea} >
-  New Idea
-</button>
+       <button className="newIdeaButton" onClick={this.addNewIdea} >New Idea </button>
     
     <span className="notification">
   {this.state.notification}
@@ -93,18 +93,12 @@ deleteIdea = (id) => {
     
       {this.state.ideas.map((idea) => {
   if(this.state.editingIdeaId === idea.id) {
-    return(<IdeaForm idea={idea} key={idea.id}   resetNotification={this.resetNotification} updateIdea={this.updateIdea} />)
+    return(<IdeaForm idea={idea} key={idea.id} resetNotification={this.resetNotification}  titleRef= {input => this.title = input} updateIdea={this.updateIdea} />)
   } else {
     return (<Idea idea={idea} key={idea.id} onClick={this.enableEditing} onDelete={this.deleteIdea} />)
-  }
-})}   
-    
-    
-    
-    
+  }  
+                                                                           })}
     </div>
-  )
+    )}
  }
-}
-
 export default IdeasContainer
